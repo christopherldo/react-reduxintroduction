@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
+import { Home, About, NotFound, Login } from './pages';
+import { PrivateRoute } from './middlewares';
 
-function App() {
+const isLogged = true;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <BrowserRouter>
+      <header>
+        <h1>Meu site legal</h1>
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">Sobre</Link></li>
+            <li><Link to="/iqhy2i8hsiduahsdas">Teste 404</Link></li>
+          </ul>
+        </nav>
       </header>
-    </div>
+
+      <hr />
+
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+
+        <Route path="/login">
+          <Login />
+        </Route>
+
+        <PrivateRoute isLogged={isLogged} path="/about">
+          <About />
+        </PrivateRoute>
+
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+
+      <hr />
+
+      <footer>
+        Todos os direitos reservados...
+      </footer>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
