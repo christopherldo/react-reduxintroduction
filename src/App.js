@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { Home, About, NotFound, Login } from './pages';
 import { PrivateRoute } from './middlewares';
 
-const isLogged = true;
+const isLogged = false;
 
 const App = () => {
   return (
